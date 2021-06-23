@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Profile {% endblock %}
+{% block body %}
+<br>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Your Profile</h2>
+        {% if user.user_profile %}
+        <img src="/static/{{user.user_profile.profile_pic}}" class="rounded-circle" width="200px" alt="">
+        <br>
+        <br>
+        <a href="{% url 'App_Login:cng_pro_pic' %}" class="btn btn-sm btn-info">Change Profile Pic</a>
+        {% else %}
+        <img src="/static/images/profile_pics/profile.png" class="rounded" width="200px" alt="">
+        <br>
+        <br>
+        <a href="{% url 'App_Login:add_pro_pic' %}" class="btn btn-sm btn-info">Change Profile Pic</a>
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <p>Username: {{user.username}}</p>
+        <p>Email: {{user.email}}</p>
+        <p>Name: {{user.first_name}} {{user.last_name}}</p>
+        <br>
+        <a href="{% url 'App_Login:user_change' %}" class="btn btn-sm btn-warning">Change Profile</a>
+    </div>
+</div>
+
+
+{% endblock %}
